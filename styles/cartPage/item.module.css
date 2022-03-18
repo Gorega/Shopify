@@ -1,0 +1,166 @@
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    margin-bottom:20px;
+    position: relative;
+}
+
+.item .content{
+    display: inline-flex;
+    align-items: center;
+    width:20%;
+}
+
+.item .content .select{
+    margin-right:15px;
+    border:1px solid #FEEDCD;
+}
+
+.item .content .img{
+    width:10vh;
+    height:10vh;
+}
+
+.item .content .img img{
+    width:100%;
+    height:100%;
+}
+
+.item .content .info{
+    margin-left:15px;
+    cursor: default;
+}
+
+.item .content .info h4{
+    font-size:13px;
+    font-weight: bold;
+    line-height:1.5;
+    line-height: 1.5;
+}
+
+.item .content .info span{
+    margin-top:-50px;
+    font-size:13px;
+    font-weight:300;
+    display: inline-flex;
+    align-items: center;
+}
+
+.item .content .info span p{
+    margin-left:7px;
+    width:13px;
+    height:13px;
+    border-radius:50%;
+    background-color:red;
+}
+
+.item .price{
+    font-size:14px;
+    font-weight:500;
+}
+
+.item .counter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:5%;
+}
+
+.item .counter span{
+    font-size:17px;
+    font-weight:bold;
+    cursor: pointer;
+}
+
+.item .counter span::selection{
+    background-color: transparent;
+}
+
+.item .counter h4{
+    font-size:20px;
+    font-weight:bold;
+    cursor: default;
+}
+
+.item .total{
+    font-size:14px;
+    font-weight:500;
+}
+
+.item .remove{
+    padding:7px 7px;
+    font-size:20px;
+}
+
+.item .remove svg{
+    cursor: pointer;
+}
+
+@media(max-width:991px){
+    .item{
+       display: block;
+       box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+       height: 250px;
+    }
+
+    .item .content{
+        display: inline-block;
+        padding:25px;
+    }
+
+    .item .content .img{
+        width:150px;
+        height:150px;
+    }
+
+    .item .content .img img{
+        border-radius: 50%;
+    }
+
+    .item .content .select{
+        position: absolute;
+        top:0;
+        left:0;
+    }
+
+    .item .content .info{
+        margin: 0;
+        position: relative;
+        left:170px;
+        top:-140px
+    }
+
+    .item .content .info h4{
+        width: max-content;
+    }
+
+    .item .content .info span{
+        margin-top:-70px;
+    }
+
+    .item .price{
+        position: relative;
+        top:-160px;
+        left:195px;
+    }
+
+    .item .counter{
+        position: relative;
+        top:-130px;
+        left:50%;
+        transform: translateX(-50%);
+        width: 14%;
+    }
+
+    .item .total{
+        display: none;
+    }
+
+    .item .remove{
+        position: absolute;
+        right:10px;
+        top:10px;
+    }
+}

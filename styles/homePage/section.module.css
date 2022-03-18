@@ -1,0 +1,61 @@
+.section{
+    margin-top:70px;
+}
+
+.section h2{
+    font-size:22px;
+    font-weight:500;
+}
+
+.section .list{
+    margin-top:15px;
+    display: grid;
+    grid-template-columns: repeat(4,23.3333%);
+    grid-gap: 25px;
+}
+
+
+.section .more::before,.section .more::after{
+    content:"";
+    position: absolute;
+    top:25px;
+    right:0;
+    height:1px;
+    width:100%;
+    background-color:var(--main-border-color);
+    z-index: 5;
+}
+
+.section .more::before{
+    right:0;
+}
+
+.section .more::after{
+    left:0;
+}
+
+.section .more{
+    margin-top:50px;
+    position: relative;
+}
+
+.section button{
+    z-index: 10;
+    position: absolute;
+    left:50%;
+    border: 1px solid var(--main-border-color);
+    font-size:17px;
+    font-weight:450;
+    cursor: pointer;
+    background-color: var(--main-background);
+    padding:15px 40px;
+}
+
+@media(max-width:768px){
+    .section .list{
+        margin-top:15px;
+        display: grid;
+        grid-template-columns: repeat(2,48%);
+        grid-gap: 25px;
+    }
+}

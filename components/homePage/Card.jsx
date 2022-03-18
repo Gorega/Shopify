@@ -1,0 +1,16 @@
+import { useRouter } from "next/router";
+import styles from "../../styles/homePage/card.module.css";
+
+function Card({product,aos}){
+    const router = useRouter();
+return <div className={styles.sec} data-aos={aos}>
+    <div className={styles.image} onClick={()=> router.push(`/products/${product.id}`)}>
+        <img src={product.image} />
+    </div>
+    <h2 onClick={()=> router.push(`/products/${product.id}`)}>{product.name}</h2>
+    <span>${product.price.toLocaleString()}</span>
+</div>
+
+}
+
+export default Card;

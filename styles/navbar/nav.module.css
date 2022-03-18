@@ -1,0 +1,143 @@
+.nav{
+    position: sticky;
+    top:0;
+    width: 100%;
+    border-bottom:1px solid var(--main-border-color);
+    color:var(--main-font-color);
+    transition: .5s all ease-in-out;
+    z-index: 20;
+    background-color: var(--main-background);
+}
+
+.nav.fixed{
+    position: sticky;
+    top:-5px;
+}
+
+.nav .content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav .content .logo h1{
+    font-size:28px;
+    font-weight:500;
+    cursor: pointer;
+}
+
+.nav .content .list ul,.nav .content .end ul{
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+}
+
+.nav .content .list > ul li,.nav .content .end > ul li{
+    margin-right:20px;
+    font-size:16px;
+    cursor: pointer;
+    font-weight:400;
+    position: relative;
+}
+
+.nav .content .list ul li{
+    font-size:14.5px;
+    transition: .1s all;
+    padding-bottom:5px;
+}
+
+.nav .content .list ul li.active{
+    border-bottom:1px solid #D2E9E3;
+}
+
+.nav .content .list ul li:hover{
+    font-size:15px;
+}
+
+.nav .content .end ul li .patch{
+    position: absolute;
+    background-color: #FCDCDC;
+    padding:1px 5px;
+    color:black;
+    width:22px;
+    height:22px;
+    font-size:11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    top:-15px;
+    left:10px;
+    font-weight:bold;
+}
+
+.nav .content .end ul li:last-of-type{
+    border:1px solid var(--main-border-color);
+    border-right: none;
+    border-top:none;
+    border-bottom:none;
+    padding:15px;
+    padding-right:0;
+}
+
+.nav .content .end ul li .user{
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+    width:fit-content;
+    position:relative
+}
+
+.nav .content .end ul li .user .userImg{
+    width:33px;
+    height:33px;
+    border-radius: 50%;
+    border:1px solid var(--main-border-color)
+}
+
+.nav .content .end ul li .user .userImg img{
+    width:100%;
+    height:100%;
+}
+
+.nav .content .end ul li .user span{
+    margin-left:5px;
+}
+
+.nav .content .end ul li .user .userList{
+    position: absolute;
+    top:50px;
+    right:0px;
+    min-width: max-content;
+    width: 240px;
+    background-color: var(--main-background);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    opacity: 0;
+    pointer-events: none;
+    transition: .3s all;
+}
+
+.nav .content .end ul li .user .userList.show{
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.nav .content .end .bar{
+    display: none;
+    font-size:25px;
+    cursor: pointer;
+}
+
+@media(max-width:992px){
+    .nav .content .logo h1{
+        font-size:24px;
+    }
+    .nav .content .list,.nav .content .end ul{
+        display: none;
+    }
+
+    .nav .content .end .bar{
+        display: block;
+    }
+    
+}

@@ -1,0 +1,105 @@
+.navMenu{
+    position:fixed;
+    z-index: 30;
+    width:60%;
+    height:100%;
+    top:0;
+    right:-100%;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    pointer-events: none;
+    transition:.3s all ease-in-out;
+}
+
+.navMenu.show{
+    right:0;
+    pointer-events: auto;
+}
+
+.navMenu .body{
+    padding:40px;
+    margin-top:25px;
+}
+
+.navMenu .close{
+    position: absolute;
+    right:25px;
+    top:25px;
+    background-color: black;
+    width:33px;
+    height:33px;
+    border-radius: 50%;
+    color:white;
+    font-size:15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navMenu .userProfile{
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #d9d9d9;
+}
+
+.navMenu .userProfile img{
+    width:55px;
+    height:55px;
+    border-radius: 50%;
+    margin-bottom:15px;
+}
+
+.navMenu .userProfile .user{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0 10px;
+    cursor: pointer;
+}
+
+.navMenu .userProfile .user h3{
+    font-size:15px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.navMenu .userProfile .sign{
+    display: inline-flex;
+    align-items: center;
+    width: max-content;
+    cursor: pointer;
+}
+
+.navMenu .userProfile .sign h2{
+    font-size:16px;
+    margin-left:12px;
+}
+
+.navMenu ul{
+    padding:0;
+}
+
+.navMenu ul li{
+    display: block;
+    margin:10px 0;
+    padding:10px 0;
+    font-size:15px;
+    cursor: pointer;
+    transition: .2s all ease-in-out;
+}
+
+.navMenu ul li svg{
+    margin-right:7px;
+}
+
+.navMenu ul li:hover{
+    background-color: #d8d8d8d8;
+    padding-left:15px;
+}
+
+@media(min-width:1170px){
+    .navMenu{
+        display: none;
+    }
+}

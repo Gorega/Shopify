@@ -1,0 +1,10 @@
+.contactPage .form{
+    padding:70px 0;
+    width:70%;
+}
+
+@media(max-width:991px){
+    .contactPage .form{
+        width: 100%;
+    }
+}

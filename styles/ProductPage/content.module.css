@@ -1,0 +1,159 @@
+.content h2{
+    font-size:20px;
+    font-weight:500;
+    text-transform: capitalize;
+}
+
+.content .rate{
+    display: inline-flex;
+    align-items: center;
+}
+
+.content .rate span{
+    font-size:18px;
+}
+
+.content .rate h4{
+    margin-left:7px;
+    font-size:14px;
+    font-weight:300;
+}
+
+.content .price{
+    font-size:15px;
+    font-weight:500;
+}
+
+.content p{
+    margin-top:15px;
+    font-size:14px;
+    line-height:1.7;
+    font-weight:300;
+}
+
+.content .details{
+    margin:20px 0;
+    display: block;
+    position: relative;
+}
+
+.content .details .sec{
+    margin-bottom:-7px;
+    display: flex;
+    align-items: center;
+    width:35%;
+}
+
+.content .details .sec h4{
+    font-size:15px;
+    font-weight:bold;
+    width:50%;
+}
+
+.content .details .sec span{
+    font-size:14px;
+    font-weight:400;
+    width:50%;
+}
+
+.content .details::after{
+    position: absolute;
+    content:"";
+    top:0px;
+    width:100%;
+    height:1px;
+    background-color: var(--main-border-color);
+}
+
+.content .colors{
+    margin-top:10px;
+    display: inline-flex;
+    align-items: center;
+}
+
+.content .colors h2{
+    font-size:15px;
+    font-weight:bold;
+}
+
+.content .colors ul{
+    display: inline-flex;
+    align-items: center;
+    list-style: none;
+    margin-left:-10px;
+}
+
+.content .colors ul li{
+    margin-right:7px;
+    width:15px;
+    height:15px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.content .colors ul li.active{
+    width:17px;
+    height:17px;
+}
+
+.content .counter{
+    margin-top:7px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width:15%;
+}
+
+.content .counter span{
+    font-size:17px;
+    font-weight:500;
+    cursor: pointer;
+}
+
+.content .counter span::selection{
+    background-color: transparent;
+}
+
+.content .counter h3{
+    font-size:20px;
+    font-weight:bold;
+    cursor: default;
+}
+
+.content .add{
+    display: inline-flex;
+    align-items: center;
+}
+
+.content .add button{
+    margin-top:7px;
+    background-color: #FEEDCD;
+    border:none;
+    padding:12px 30px;
+    color:black;
+    cursor: pointer;
+    font-size:13px;
+}
+
+.content .add .msg{
+    color:darkred;
+    font-weight:500;
+    font-size:13px;
+    margin-left:15px;
+    position: relative;
+    top:-20px;
+}
+
+@media(max-width:992px){
+    .content .details .sec{
+        width: 100%;
+    }
+    .content .details .sec h4{
+        width: max-content;
+    }
+
+    .content .details .sec span{
+        width:max-content;
+        margin-left:24px;
+    }
+}

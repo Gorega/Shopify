@@ -1,0 +1,26 @@
+.userList{
+    padding:10px 0;
+}
+.userList ul{
+    display: block !important;
+    list-style: none;
+    padding: 0;
+}
+.userList ul li{
+    font-size:14px !important;
+    font-weight:400;
+    padding:12px 20px;
+}
+
+/* .userList ul li:first-of-type{
+    border-bottom:1px solid var(--main-border-color);
+    cursor: default;
+}
+
+.userList ul li:first-of-type:hover{
+    font-weight: 400;
+} */
+
+.userList ul li:hover{
+    font-weight:bold !important;
+}

@@ -1,0 +1,53 @@
+.slider .mainImg{
+    width:55vh;
+    height:45vh;
+}
+
+.slider .mainImg img{
+    width:100%;
+    height:100%;
+}
+
+.slider .subImgs{
+    margin-top:20px;
+    width: max-content;
+}
+
+.slider .subImgs ul{
+    padding:0;
+}
+
+.slider .subImgs ul li{
+    display: inline-block;
+    margin-right:10px;
+    margin-bottom:10px;
+    cursor: pointer;
+}
+
+.slider .subImgs ul li img{
+    width:10vh;
+    height:10vh;
+    border-radius: 5px;
+}
+
+@media(max-width:768px){
+    .slider .mainImg{
+        width:100%;
+        height: 30vh;
+    }
+
+    .slider .subImgs{
+        width: 100%;
+    }
+
+    .slider .subImgs ul li img{
+        width: 10vh;
+    }
+}
+
+@media(min-width:769px) and (max-width:991){
+    .slider .mainImg{
+        width:55vh;
+        height:45vh;
+    }
+}

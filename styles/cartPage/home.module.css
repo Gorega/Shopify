@@ -1,0 +1,26 @@
+.cart{
+    width: 100%;
+    min-width: fit-content;
+    overflow-x: hidden;
+}
+
+.emptyCart{
+    text-align: center;
+    padding:50px 0;
+    min-height: calc(100vh - 280px);
+}
+
+.emptyCart h1{
+    font-size:27px;
+    font-weight:500;
+
+}
+
+.emptyCart button{
+    padding:10px 40px;
+    border:none;
+    cursor: pointer;
+    background-color:#FEEDCD;
+    color:black;
+    font-size:13px;
+}

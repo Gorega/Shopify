@@ -1,0 +1,89 @@
+.footer{
+    background-color: #D2E9E3;
+    width:fit-content;
+    min-width: 100%;
+    padding:30px 0;
+    height:fit-content;
+    position:relative;
+    bottom:0;
+}
+
+.footer .content{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer .content > .prime{
+    width:30%
+}
+
+.footer .content .prime h1{
+    font-size:30px;
+    font-weight:500;
+}
+
+.footer .content .prime p{
+    font-size:13px;
+    line-height:1.5;
+    font-weight:400;
+}
+
+.footer .content .lista{
+    width:50%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer .content .lista .contact{
+    width:35%;
+}
+
+.footer .content .lista h2 {
+    font-size:15px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.footer .content .lista ul{
+    list-style: none;
+    padding: 5px;
+}
+
+.footer .content .lista ul li{
+    display: block;
+    margin-bottom:15px;
+    cursor: pointer;
+    font-size:13px;
+    line-height: 1.5;
+    width: max-content;
+}
+
+.footer .content .lista ul li svg{
+    margin-right:8px;
+    font-size:11px;
+}
+
+
+@media(max-width:768px){
+    .footer .content{
+        display: block
+    }
+
+    .footer .content > .prime{
+        width:100%
+    }
+
+    .footer .content .lista{
+        width: 100%;
+        margin-top:25px;
+    }
+
+    .footer .content .lista .contact{
+        width: 100%;
+    }
+
+    .footer .content .lista ul li{
+        font-size: 12px;
+    }
+}

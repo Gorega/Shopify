@@ -1,0 +1,22 @@
+.patch{
+    background-color: #D2E9E3;
+    padding:25px;
+    height:140px;
+    width: 100%;
+}
+
+.patch h4{
+    font-size:20px;
+    font-weight:500;
+    text-transform: capitalize;
+    color:var(--main-font-color);
+    cursor: pointer;
+    width:fit-content
+}
+
+.patch h4 span{
+    cursor: pointer;
+    text-transform: capitalize;
+    cursor: default;
+    width:fit-content
+}

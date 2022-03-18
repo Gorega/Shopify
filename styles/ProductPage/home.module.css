@@ -1,0 +1,27 @@
+.productPage button{
+    margin:50px 0;
+    border:none;
+    padding:10px 20px;
+    background-color: #FEEDCD;
+    color:black;
+    font-size:13px;
+    cursor: pointer;
+}
+
+.productPage .content{
+    display: inline-flex;
+}
+
+.productPage .content .body{
+    margin-left:70px;
+}
+
+@media(max-width:992px){
+    .productPage .content{
+        display: block;
+    }
+
+    .productPage .content .body{
+        margin:auto
+    }
+}

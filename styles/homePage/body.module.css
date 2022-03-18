@@ -1,0 +1,153 @@
+.body{
+    margin-top:170px;
+    margin-bottom:40px;
+}
+
+.body .footages{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top:70px;
+    margin-bottom:70px;
+}
+
+
+.body .side{
+    width:100%;
+}
+
+.body .footages .footage{
+    margin:25px;
+    height:500px;
+    position: relative;
+}
+
+
+.body .footages .footage .cont{
+    position: relative;   
+}
+
+.body .footages .side:first-of-type .footage:first-of-type .cont{
+    left:60%;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.body .footages .side:first-of-type .footage:last-of-type .cont{
+    left:10%;
+    top:50%;
+    transform: translateY(-50%);
+}
+
+.body .footages .side:last-of-type .footage .cont{
+    left:10%;
+    top:15%;
+    transform: translateY(-50%);
+}
+
+
+.body .footages .footage h2{
+    font-size:24px;
+    font-weight:300;
+    text-transform: capitalize;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.body .footages .footage button{
+    background-color: var(--main-background);
+    color:var(--main-font-color);
+    padding:8px 20px;
+    font-size:13px;
+    cursor: pointer;
+    border: none;
+    margin-top:10px;
+}
+
+.body .footages .footage .image{
+    position: absolute;
+    width:26vh;
+    height:32vh;
+    max-height: min-content;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.body .footages .side:last-of-type .footage .image{
+    height:40vh;
+    width:32vh;
+}
+
+.body .footages .footage .image img{
+    width:100%;
+    height:100%;
+    border-radius: 5px;
+}
+
+.body > section{
+    margin:40px 0;
+    display: inline-flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.body section aside{
+    width:30%;
+}
+
+.body section aside h2{
+    font-size:22px;
+    font-weight:450;
+}
+
+.body section aside P{
+    font-size:15px;
+    line-height: 1.5;
+    width:90%;
+    margin-top:-15px;
+}
+
+.body section aside button{
+    background-color: var(--main-background);
+    border:1px solid black;
+    padding:7px 20px;
+    margin-top:10px;
+    cursor: pointer;
+}
+
+.body section .columns{
+    width:100%;
+    display: grid;
+    grid-template-columns: repeat(3,31.33333%);
+    grid-gap: 25px;
+    background-color: var(--main-background);
+}
+
+.body .subscribe{
+    margin-top:70px;
+}
+
+@media(max-width:768px){
+
+    .body .footages{
+        display: none;
+    }
+
+    .body > section{
+        display: block;
+        margin:auto;
+    }
+
+    .body section aside{
+        width: auto;
+        margin:auto;
+        text-align: center;
+    }
+
+    .body section .columns{
+        margin:40px auto;
+        width:70%;
+        display: block;
+    }
+}
