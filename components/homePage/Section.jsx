@@ -6,7 +6,7 @@ function Section({products}){
     const router = useRouter();
 return <>
 <div className="container">
-    <div className={styles.section}>
+     <div className={styles.section}>
         <h2>All Products</h2>
         <div className={styles.list}>
             {products.slice(0,8).map((product,index)=>{
