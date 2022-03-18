@@ -18,7 +18,7 @@ const AppProvider = ({children})=>{
 
     const getSavedProducts = ()=>{
         if(status === "authenticated"){
-            axios.get(`${config}/api/cart`)
+            axios.get(`/api/cart`)
             .then(res => setSavedProducts(res.data.result))
             .catch(err => console.log(err))
         }
@@ -26,7 +26,7 @@ const AppProvider = ({children})=>{
 
     const removeFromCartHandler = (productName,action)=>{
         setRemoveFromCartLoading(true)
-        axios.delete(`${config}/api/cart/delete/${productName}`)
+        axios.delete(`/api/cart/delete/${productName}`)
         .then(res => setRemoveFromCartLoading(false))
         .catch(err=> setRemoveFromCartLoading(false))
     }
