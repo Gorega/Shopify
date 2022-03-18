@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import {config} from "./lib/config";
 
 export const AppContext = React.createContext();
 
@@ -17,7 +18,7 @@ const AppProvider = ({children})=>{
 
     const getSavedProducts = ()=>{
         if(status === "authenticated"){
-            axios.get(`http://localhost:3000/api/cart`)
+            axios.get(`${config}/api/cart`)
             .then(res => setSavedProducts(res.data.result))
             .catch(err => console.log(err))
         }
@@ -25,7 +26,7 @@ const AppProvider = ({children})=>{
 
     const removeFromCartHandler = (productName,action)=>{
         setRemoveFromCartLoading(true)
-        axios.delete(`http://localhost:3000/api/cart/delete/${productName}`)
+        axios.delete(`${config}/api/cart/delete/${productName}`)
         .then(res => setRemoveFromCartLoading(false))
         .catch(err=> setRemoveFromCartLoading(false))
     }
