@@ -1,6 +1,6 @@
 import ProductsPage from "../../components/ProductsPage/Home";
 import axios from "axios"
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Head from "next/head"
 
 function Index({products}){
@@ -11,9 +11,9 @@ function Index({products}){
   const [categoryValue,setCategoryValue] = useState(null);
   const [companyValue,setCompanyValue] = useState(null);
   const [priceValue,setPriceValue] = useState(309999);
-  const [sortValue,setSortValue] = useState("lowest")
+  const [sortValue,setSortValue] = useState(null)
   const [finalProducts,setFinalProducts] = useState(products)
-  const [filteredProducts,setFilteredProducts] = useState([]);
+  const [filteredProducts,setFilteredProducts] = useState(finalProducts);
 
   const searchHandler = (e)=>{
       setSearchValue(e.target.value)
@@ -24,31 +24,21 @@ function Index({products}){
 
   const categoryHandler = (e,value)=>{
     setCategoryValue(e.target.value)
-    if(filteredProducts.length >= 1){
-      let searchedProducts = filteredProducts.filter((product)=> product.category.toLowerCase() === value.toLowerCase())
-        setFinalProducts(searchedProducts)
+    if(value === "All"){
+      setFinalProducts(filteredProducts)
     }else{
-      if(value === "All"){
-        setFinalProducts(filteredProducts)
-      }else{
-        let searchedProducts = products.filter((product)=> product.category.toLowerCase() === value.toLowerCase())
-        setFinalProducts(searchedProducts)
-      }
+      let searchedProducts = filteredProducts.filter((product)=> product.category.toLowerCase() === value.toLowerCase())
+      setFinalProducts(searchedProducts)
     }
   }
 
   const companyHandler = (e,value)=>{
     setCompanyValue(e.target.value)
-    if(filteredProducts.length >=1){
-        let searchedProducts = filteredProducts.filter((product)=> product.company.toLowerCase() === value.toLowerCase())
-        setFinalProducts(searchedProducts)
+    if(value === "All"){
+      setFinalProducts(filteredProducts)
     }else{
-      if(value === "All"){
-        setFinalProducts(filteredProducts)
-      }else{
-        let searchedProducts = products.filter((product)=> product.company.toLowerCase() === value.toLowerCase())
-        setFinalProducts(searchedProducts)
-      }
+      let searchedProducts = filteredProducts.filter((product)=> product.company.toLowerCase() === value.toLowerCase())
+      setFinalProducts(searchedProducts)
     }
   }
 
@@ -94,10 +84,6 @@ function Index({products}){
       setFinalProducts(sortedProducts)
     }
   }
-
-  useEffect(()=>{
-    console.log(filteredProducts)
-  },[filteredProducts])
 
 return <>
   <Head>
