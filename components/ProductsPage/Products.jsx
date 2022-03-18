@@ -23,7 +23,7 @@ return <div className={styles.products}>
         <div className={styles.sec}>
             <span className={styles.sortLabel}>Sort By</span>
             <select onChange={filters.sortHandler}>
-                <option>Default</option>
+                <option value="" hidden>Choose</option>
                 <option value="lowest">Price (Lowest)</option>
                 <option value="heighest">Price (Heighest)</option>
                 <option value="a-z">Name (A-Z)</option>
