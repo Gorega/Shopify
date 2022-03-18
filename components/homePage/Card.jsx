@@ -7,7 +7,7 @@ return <div className={styles.card} data-aos={aos}>
     <div className={styles.image} onClick={()=> router.push(`/products/${product.id}`)}>
         <img src={product.image} />
     </div>
-    <h2 onClick={()=> router.push(`/products/${product.id}`)}>{product.name}</h2>
+    <h3 onClick={()=> router.push(`/products/${product.id}`)}>{product.name}</h3>
     <span>${product.price.toLocaleString()}</span>
 </div>
 
