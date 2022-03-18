@@ -5,13 +5,12 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import AlertModel from "./AlertModel";
 import { useState } from "react";
-import {config} from "../../lib/config";
 
 function Items({products}){
     const router = useRouter();
     const [showModel,setShowModel] = useState(false);
     const clearHandler = ()=>{
-        axios.delete(`${config}/api/cart/delete/clear`)
+        axios.delete(`/api/cart/delete/clear`)
         .then(res => console.log(res))
         .catch(err => console.log(err));
     }

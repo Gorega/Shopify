@@ -19,7 +19,7 @@ function Register(){
         e.preventDefault();
         setError({status:false})
         setLoading(true)
-        axios.post(`${config}/api/auth/register`,{
+        axios.post(`/api/auth/register`,{
             username,
             email:emailValue,
             password:passwordValue,

@@ -6,7 +6,6 @@ import { faTriangleCircleSquare, faSpinner } from '@fortawesome/free-solid-svg-i
 import { AppContext } from "../../ContextApi";
 import styles from "../../styles/ProductPage/content.module.css";
 import Rating from '@mui/material/Rating';
-import {config} from "../../lib/config";
 
 function Content({product}){
     const [counterValue,setCounterValue] = useState(1);
@@ -39,7 +38,7 @@ function Content({product}){
     const addToCartHandler = ()=>{
         setLoading(true)
         setError({status:false})
-        axios.post(`${config}/api/cart/add`,{
+        axios.post(`/api/cart/add`,{
             product_img:product.images[0].url,
             product_name:product.name,
             product_color:product.colors[colorIndex],

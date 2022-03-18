@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import {config} from "../../lib/config";
 
 function Home(){
     const router = useRouter();
@@ -13,7 +12,7 @@ function Home(){
 
     const searchHandler = (e)=>{
         e.preventDefault();
-        axios.get(`${config}/api/search/products?query=${searchValue}`,{withCredentials:true})
+        axios.get(`/api/search/products?query=${searchValue}`,{withCredentials:true})
         .then(res => setData(res.data.Products))
         .catch(err => console.log(err));
     }
