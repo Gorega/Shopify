@@ -5,7 +5,6 @@ import {useContext, useEffect, useState} from "react";
 import {AppContext} from "../../ContextApi";
 import AlertModel from "./AlertModel";
 import axios from "axios";
-import {config} from "../../lib/config";
 
 function Item({product}){
 
@@ -48,7 +47,7 @@ function Item({product}){
         if(check){
             setSubtotalLoading(true)
         }
-        axios.patch(`${config}/api/cart/update/quantity`,{quantity:counterValue,productName:product.product_name})
+        axios.patch(`/api/cart/update/quantity`,{quantity:counterValue,productName:product.product_name})
         .then(res=> setSubtotalLoading(false))
         .catch(err=> setSubtotalLoading(false));
     },[selectedProducts,counterValue])
