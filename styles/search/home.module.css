@@ -1,5 +1,7 @@
 .searchPage{
     margin:50px 0;
+    height:max-content;
+    min-height:50vh;
 }
 
 .searchPage .search form{

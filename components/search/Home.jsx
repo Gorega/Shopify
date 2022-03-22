@@ -37,7 +37,7 @@ return <div className={styles.searchPage}>
     <div className={styles.search}>
             <form onSubmit={searchHandler}>
                 <input type="search" placeholder="Search" onChange={(e)=> setSearchValue(e.target.value)} />
-                <span type="submit"><FontAwesomeIcon icon={faSearch} /></span>
+                <span type="submit" onClick={searchHandler}><FontAwesomeIcon icon={faSearch} /></span>
             </form>
         </div>
         <div className={styles.content}>

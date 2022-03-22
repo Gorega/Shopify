@@ -21,11 +21,11 @@ return <div className="container">
         <div className={styles.footages}>
             <div className={styles.side}>
                 <Footage backgroundColor="#FCDCDC" height={250}
-                        style={{top:-50,left:40}} product={products[12]}
+                        style={{top:-50,left:25}} product={products[12]}
                         aos={"fade-right"}
                 />
                 <Footage backgroundColor="#FAEACC" height={250}
-                        style={{top:20,right:40}} product={products[8]}
+                        style={{top:20,right:25}} product={products[8]}
                         aos={"fade-right"}
                 />
             </div>
