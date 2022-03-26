@@ -8,6 +8,7 @@ const AppProvider = ({children})=>{
     const [sliderValue,setSliderValue] = useState(0)
     const [showRegisterForm,setShowRegisterForm] = useState(false);
     const {status} = useSession()
+    const [addToCartLoading,setAddToCartLoading] = useState(false);
     const [removeFromCartLoading,setRemoveFromCartLoading] = useState(false)
     const [savedProducts,setSavedProducts] = useState([]);
     const [subtotalLoading,setSubtotalLoading] = useState(false);
@@ -23,7 +24,14 @@ const AppProvider = ({children})=>{
         }
   }
 
-    const removeFromCartHandler = (productName,action)=>{
+    const addToCartHandler = (item)=>{
+        setAddToCartLoading(true)
+        axios.post(`/api/cart/add`,item)
+        .then(res => setAddToCartLoading(false))
+        .catch(err=> setAddToCartLoading(false))
+    }
+
+    const removeFromCartHandler = (productName)=>{
         setRemoveFromCartLoading(true)
         axios.delete(`/api/cart/delete/${productName}`)
         .then(res => setRemoveFromCartLoading(false))
@@ -36,7 +44,7 @@ const AppProvider = ({children})=>{
 
     useEffect(()=>{
         getSavedProducts();
-    },[status,savedProducts])
+    },[addToCartHandler,removeFromCartHandler])
     
     return <AppContext.Provider value={{
         sliderValue,
@@ -47,6 +55,8 @@ const AppProvider = ({children})=>{
         setShowLog,
         isProductSaved,
         removeFromCartHandler,
+        addToCartHandler,
+        addToCartLoading,
         removeFromCartLoading,
         savedProducts,setSavedProducts,
         subtotalLoading,setSubtotalLoading,

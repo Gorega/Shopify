@@ -11,9 +11,7 @@ function Content({product}){
     const [counterValue,setCounterValue] = useState(1);
     const [colorIndex,setColorIndex] = useState(0);
     const {status} = useSession();
-    const [loading,setLoading] = useState(false)
-    const [error,setError] = useState({status:false,msg:""})
-    const {isProductSaved,setShowLog,removeFromCartHandler,removeFromCartLoading} = useContext(AppContext);
+    const {isProductSaved,setShowLog,removeFromCartHandler,removeFromCartLoading,addToCartHandler,addToCartLoading} = useContext(AppContext);
     
     const increseCounter = ()=>{
         if(counterValue >= 5){
@@ -35,26 +33,28 @@ function Content({product}){
         }
     }
 
-    const addToCartHandler = ()=>{
-        setLoading(true)
-        setError({status:false})
-        axios.post(`/api/cart/add`,{
-            product_img:product.images[0].url,
-            product_name:product.name,
-            product_color:product.colors[colorIndex],
-            product_price:product.price,
-            product_quantity:counterValue
-        }).then(res => {
-            setLoading(false)
-            setError({status:false})
-        })
-        .catch(err=> {
-            setLoading(false)
-            if(err.response.status === 422){
-                setError({status:true,msg:err.response.data.msg})
-            }
-        })
-    }
+
+
+    // const addToCartHandler = ()=>{
+    //     setLoading(true)
+    //     setError({status:false})
+    //     axios.post(`/api/cart/add`,{
+    //         product_img:product.images[0].url,
+    //         product_name:product.name,
+    //         product_color:product.colors[colorIndex],
+    //         product_price:product.price,
+    //         product_quantity:counterValue
+    //     }).then(res => {
+    //         setLoading(false)
+    //         setError({status:false})
+    //     })
+    //     .catch(err=> {
+    //         setLoading(false)
+    //         if(err.response.status === 422){
+    //             setError({status:true,msg:err.response.data.msg})
+    //         }
+    //     })
+    // }
 
 return <div className={styles.content}>
     <h2>{product.name}</h2>
@@ -104,12 +104,17 @@ return <div className={styles.content}>
     <div className={styles.add}>
         {status === "authenticated" && isProductSaved(product.name) ? <button onClick={()=>removeFromCartHandler(product.name)}>{removeFromCartLoading ? <FontAwesomeIcon icon={faSpinner} className="fa-spin" /> : "Remove from Cart"}</button> : <button onClick={()=>{
             if(status === "authenticated"){
-                addToCartHandler()
+                addToCartHandler({
+                    product_img:product.images[0].url,
+                    product_name:product.name,
+                    product_color:product.colors[colorIndex],
+                    product_price:product.price,
+                    product_quantity:counterValue
+                })
             }else{
                 setShowLog(true)
             }
-        }}>{loading ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : "Add to Cart"}</button>}
-        {error.status && <div className={styles.msg}><FontAwesomeIcon icon={faTriangleCircleSquare} /> {error.msg}</div>}
+        }}>{addToCartLoading ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : "Add to Cart"}</button>}
     </div>
 
 </div>
