@@ -2,7 +2,10 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
 
-export const AppContext = React.createContext();
+export const AppContext = React.createContext({
+    removeProduct:()=>{},
+    addProduct:()=>{},
+});
 
 const AppProvider = ({children})=>{
     const [sliderValue,setSliderValue] = useState(0)
@@ -44,7 +47,7 @@ const AppProvider = ({children})=>{
 
     useEffect(()=>{
         getSavedProducts();
-    },[addToCartHandler,removeFromCartHandler])
+    },[removeProduct,addProduct])
     
     return <AppContext.Provider value={{
         sliderValue,
