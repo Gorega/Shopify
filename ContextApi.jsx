@@ -1,44 +1,27 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 
-export const AppContext = React.createContext({
-    removeProduct:()=>{},
-    addProduct:()=>{},
-});
+export const AppContext = React.createContext();
 
 const AppProvider = ({children})=>{
+    const {status:cartStatus} = useSelector((state)=> state.cart)
+    const {status} = useSession()
     const [sliderValue,setSliderValue] = useState(0)
     const [showRegisterForm,setShowRegisterForm] = useState(false);
-    const {status} = useSession()
-    const [addToCartLoading,setAddToCartLoading] = useState(false);
-    const [removeFromCartLoading,setRemoveFromCartLoading] = useState(false)
     const [savedProducts,setSavedProducts] = useState([]);
-    const [subtotalLoading,setSubtotalLoading] = useState(false);
     const [showLog,setShowLog] = useState(false);
+    const [subtotalLoading,setSubtotalLoading] = useState(false);
     const [selectedProducts,setSelectedProducts] = useState([]);
 
 
-    const getSavedProducts = ()=>{
-        if(status === "authenticated"){
-            axios.get(`/api/cart`)
-            .then(res => setSavedProducts(res.data.result))
-            .catch(err => console.log(err))
-        }
-  }
-
-    const addToCartHandler = (item)=>{
-        setAddToCartLoading(true)
-        axios.post(`/api/cart/add`,item)
-        .then(res => setAddToCartLoading(false))
-        .catch(err=> setAddToCartLoading(false))
-    }
-
-    const removeFromCartHandler = (productName)=>{
-        setRemoveFromCartLoading(true)
-        axios.delete(`/api/cart/delete/${productName}`)
-        .then(res => setRemoveFromCartLoading(false))
-        .catch(err=> setRemoveFromCartLoading(false))
+        const getSavedProducts = ()=>{
+            if(status === "authenticated"){
+                axios.get(`/api/cart`)
+                .then(res => setSavedProducts(res.data.result))
+                .catch(err => console.log(err))
+            }
     }
 
     const isProductSaved = (productName)=>{
@@ -47,7 +30,7 @@ const AppProvider = ({children})=>{
 
     useEffect(()=>{
         getSavedProducts();
-    },[removeProduct,addProduct])
+    },[cartStatus,status])
     
     return <AppContext.Provider value={{
         sliderValue,
@@ -57,10 +40,6 @@ const AppProvider = ({children})=>{
         showLog,
         setShowLog,
         isProductSaved,
-        removeFromCartHandler,
-        addToCartHandler,
-        addToCartLoading,
-        removeFromCartLoading,
         savedProducts,setSavedProducts,
         subtotalLoading,setSubtotalLoading,
         selectedProducts,setSelectedProducts

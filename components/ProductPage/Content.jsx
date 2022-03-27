@@ -1,17 +1,38 @@
-import axios from "axios";
 import { useSession } from "next-auth/react";
 import { useContext, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faTriangleCircleSquare, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { AppContext } from "../../ContextApi";
 import styles from "../../styles/ProductPage/content.module.css";
 import Rating from '@mui/material/Rating';
+import { useDispatch, useSelector } from "react-redux";
+import {addToCart,removeFromCart} from "../../features/cartSlice";
 
 function Content({product}){
     const [counterValue,setCounterValue] = useState(1);
     const [colorIndex,setColorIndex] = useState(0);
     const {status} = useSession();
-    const {isProductSaved,setShowLog,removeFromCartHandler,removeFromCartLoading,addToCartHandler,addToCartLoading} = useContext(AppContext);
+    const dispatch = useDispatch();
+    const {status:cartStatus} = useSelector((state)=> state.cart)
+    const {isProductSaved,setShowLog} = useContext(AppContext);
+
+    const saveProduct = (productName)=>{
+        if(status === "authenticated"){
+            if(isProductSaved(productName)){
+                dispatch(removeFromCart(productName))
+            }else{
+                dispatch(addToCart({
+                    product_img:product.images[0].url,
+                    product_name:product.name,
+                    product_color:product.colors[colorIndex],
+                    product_price:product.price,
+                    product_quantity:counterValue
+                }))
+            }
+        }else{
+            setShowLog(true)
+        }
+    }
     
     const increseCounter = ()=>{
         if(counterValue >= 5){
@@ -32,29 +53,6 @@ function Content({product}){
             })
         }
     }
-
-
-
-    // const addToCartHandler = ()=>{
-    //     setLoading(true)
-    //     setError({status:false})
-    //     axios.post(`/api/cart/add`,{
-    //         product_img:product.images[0].url,
-    //         product_name:product.name,
-    //         product_color:product.colors[colorIndex],
-    //         product_price:product.price,
-    //         product_quantity:counterValue
-    //     }).then(res => {
-    //         setLoading(false)
-    //         setError({status:false})
-    //     })
-    //     .catch(err=> {
-    //         setLoading(false)
-    //         if(err.response.status === 422){
-    //             setError({status:true,msg:err.response.data.msg})
-    //         }
-    //     })
-    // }
 
 return <div className={styles.content}>
     <h2>{product.name}</h2>
@@ -102,19 +100,10 @@ return <div className={styles.content}>
     </div>
 
     <div className={styles.add}>
-        {status === "authenticated" && isProductSaved(product.name) ? <button onClick={()=>removeFromCartHandler(product.name)}>{removeFromCartLoading ? <FontAwesomeIcon icon={faSpinner} className="fa-spin" /> : "Remove from Cart"}</button> : <button onClick={()=>{
-            if(status === "authenticated"){
-                addToCartHandler({
-                    product_img:product.images[0].url,
-                    product_name:product.name,
-                    product_color:product.colors[colorIndex],
-                    product_price:product.price,
-                    product_quantity:counterValue
-                })
-            }else{
-                setShowLog(true)
-            }
-        }}>{addToCartLoading ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : "Add to Cart"}</button>}
+        {status === "authenticated" &&
+        <button onClick={()=>saveProduct(product.name)}>
+        {cartStatus === "loading" ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : isProductSaved(product.name) ? "Remove from cart" : "Add to cart"}
+        </button>}
     </div>
 
 </div>

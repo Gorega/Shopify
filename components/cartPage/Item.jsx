@@ -4,12 +4,14 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 import {useContext, useEffect, useState} from "react";
 import {AppContext} from "../../ContextApi";
 import AlertModel from "./AlertModel";
+import {removeFromCart} from "../../features/cartSlice";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 function Item({product}){
-
+    const dispatch = useDispatch();
     const [counterValue,setCounterValue] = useState(product.product_quantity);
-    const {removeFromCartHandler,setSubtotalLoading,selectedProducts,setSelectedProducts} = useContext(AppContext);
+    const {setSubtotalLoading,selectedProducts,setSelectedProducts} = useContext(AppContext);
     const [showModel,setShowModel] = useState(false);
 
     // update selected product quantity
@@ -99,7 +101,7 @@ return <div className={styles.item}>
         <FontAwesomeIcon icon={faTrashCan} onClick={()=> setShowModel(true)} />
         <AlertModel showModel={showModel}
                     removeAction={()=> {
-                    removeFromCartHandler(product.product_name)
+                    dispatch(removeFromCart(product.product_name))
                     setShowModel(false)
                     }}
                     closeModel={()=>setShowModel(false)}

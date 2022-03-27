@@ -4,6 +4,8 @@ import ErrorBoundary from "../components/ErrorBoundary"
 import { SessionProvider } from "next-auth/react";
 import Router from 'next/router';
 import AppProvider from "../ContextApi";
+import { store } from '../store';
+import { Provider } from 'react-redux'
 import Nav from "../components/navbar/Nav"
 import Footer from "../components/Footer";
 import AOS from "aos"
@@ -29,14 +31,16 @@ function MyApp({ Component, pageProps:{
   }, []);
 
     return <SessionProvider session={session}>
+      <Provider store={store}>
       <AppProvider>
-      <Nav />
-      <ErrorBoundary >
-      <Component {...pageProps} />
-      </ErrorBoundary>
-      <Footer />
-  </AppProvider>
-  </SessionProvider>
+        <Nav />
+        <ErrorBoundary >
+        <Component {...pageProps} />
+        </ErrorBoundary>
+        <Footer />
+      </AppProvider>
+      </Provider>
+    </SessionProvider>
     
 }
 
