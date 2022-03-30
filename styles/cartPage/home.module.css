@@ -1,9 +1,6 @@
 .cart{
     width: 100%;
-    min-width: fit-content;
     overflow-x: hidden;
-    padding-left:15px;
-    padding-right:15px;
 }
 
 .emptyCart{
