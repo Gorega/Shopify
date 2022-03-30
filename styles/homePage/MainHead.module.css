@@ -101,7 +101,7 @@
     height:45px;
 }
 
-@media(max-width:768px){
+@media(max-width:992px){
     .main{
         display: block;
         padding:35px;
