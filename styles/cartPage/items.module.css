@@ -1,3 +1,8 @@
+.items{
+    padding-left:15px;
+    padding-right:15px;
+}
+
 .items .head{
     padding-bottom:20px;
     border-bottom:1px solid var(--main-border-color);
