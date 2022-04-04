@@ -43,12 +43,16 @@ function Nav(){
                 navRef.current.classList.remove(styles.fixed)
             }
         })
-        setActiveLiTouch();
-
+        if(showNavMenu){
+            document.body.style.overflow = "hidden";
+        }else{
+            document.body.style.overflow = "auto"
+            setActiveLiTouch();
+        }        
         return(()=>{
             window.removeEventListener("scroll",fixedNav);
         })
-    },[router])
+    },[router,showNavMenu])
     
 return <>
 <div className={styles.nav} ref={navRef}>

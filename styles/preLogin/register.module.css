@@ -71,7 +71,7 @@
     font-size:13px;
     color:black;
     padding:15px 50px;
-    width:50%;
+    width:fit-content;
 }
 
 @media(max-width:992px){

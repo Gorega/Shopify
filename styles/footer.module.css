@@ -19,12 +19,12 @@
 }
 
 .footer .content .prime h1{
-    font-size:30px;
+    font-size: 1.6rem;
     font-weight:500;
 }
 
 .footer .content .prime p{
-    font-size:13px;
+    font-size:.8rem;
     line-height:1.5;
     font-weight:400;
 }
@@ -81,9 +81,10 @@
 
     .footer .content .lista .contact{
         width: 100%;
+        margin-right:25px;
     }
 
     .footer .content .lista ul li{
-        font-size: 12px;
+        font-size: 11px;
     }
 }

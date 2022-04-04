@@ -5,10 +5,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import { useContext } from "react";
 import {AppContext} from "../../ContextApi";
+import AlertModel from "./AlertModel";
 
 function OrderCard(){
     const {subtotalLoading,selectedProducts} = useContext(AppContext);
     const [showCheckoutPage,setShowCheckoutPage] = useState(false);
+    const [showAlertModel,setShowAlertModel] = useState(false);
     let shippingFee = 5.34
     const subtotal = selectedProducts.reduce((total,product)=>{
         return total += product.product_price * product.product_quantity
@@ -42,10 +44,21 @@ return <>
         </div>
     </div>
 
-    <button onClick={()=> setShowCheckoutPage(true)}>Checkout</button>
+    <button onClick={()=> {
+        if(selectedProducts.length >= 1){
+            setShowCheckoutPage(true)
+        }else{
+            setShowAlertModel(true)
+        }
+    }}>Checkout</button>
 </div>
 
-{showCheckoutPage && <Checkout subtotal={(subtotal + shippingFee).toLocaleString()} closeCheckoutpage={()=> setShowCheckoutPage(false)} />}
+    {showCheckoutPage && <Checkout subtotal={(subtotal + shippingFee).toLocaleString()} closeCheckoutpage={()=> setShowCheckoutPage(false)} />}
+    <AlertModel showModel={showAlertModel}
+                alertContent="Please select the products you want to buy first."
+                closeModel={()=>setShowAlertModel(false)}
+                removeAction={()=>setShowAlertModel(false)}
+        />
 </>
 
 }

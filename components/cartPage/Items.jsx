@@ -2,18 +2,15 @@ import Item from "./Item";
 import OrderCard from "./OrderCard";
 import styles from "../../styles/cartPage/items.module.css";
 import { useRouter } from "next/router";
-import axios from "axios";
+import {useDispatch} from "react-redux";
+import {clearCart} from "../../features/cartSlice";
 import AlertModel from "./AlertModel";
 import { useState } from "react";
 
 function Items({products}){
     const router = useRouter();
     const [showModel,setShowModel] = useState(false);
-    const clearHandler = ()=>{
-        axios.delete(`/api/cart/delete/clear`)
-        .then(res => console.log(res))
-        .catch(err => console.log(err));
-    }
+    const dispatch = useDispatch();
     
 return <div className={styles.items}>
     <div className={styles.head}>
@@ -37,7 +34,7 @@ return <div className={styles.items}>
         <button onClick={()=> setShowModel(true)} style={{backgroundColor:"var(--alt-background)"}}>Clear Shopping Cart</button>
         <AlertModel showModel={showModel}
                     removeAction={()=>{
-                        clearHandler()
+                        dispatch(clearCart());
                         setShowModel(false)
                     }}
                     closeModel={()=> setShowModel(false)}

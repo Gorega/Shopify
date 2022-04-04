@@ -5,10 +5,11 @@
     padding:25px;
     min-height: 180px;
     width: 100%;
+    margin-bottom:100px;
 }
 
 .main .sec h2{
-    font-size:25px;
+    font-size:2rem;
     font-weight:300;
     line-height:1.6;
     text-transform: capitalize;
@@ -128,7 +129,13 @@
     }
 
     .main .sec .subscribe input{
-        width: 50%;
-        font-size: 11px;
+        width: 45%;
+        height:35px;
+        font-size:10px;
+    }
+
+    .main .sec .subscribe button{
+        width: fit-content;
+        height:35px;
     }
 }

@@ -56,6 +56,22 @@
         margin-top:15px;
         display: grid;
         grid-template-columns: repeat(2,48%);
-        grid-gap: 25px;
+        grid-gap: 20px;
+    }
+
+    .section .more{
+        position: relative;
+        left:50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        margin-top:50px;
+        margin-bottom: -100px;
+    }
+
+    .section button{
+        left: 0;
+        position: relative;
+        font-size: 13px;
     }
 }

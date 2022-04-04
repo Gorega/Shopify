@@ -24,7 +24,7 @@ return <>
            {products.slice(0,2).map((product,index)=>{
                return  <section key={index}>
                     <h2 onClick={()=> router.push(`/products/${product.id}`)}>{product.name}</h2>
-                    <p>{product.description && `${product.description.substring(0,150)} ...`}</p>
+                    <p>{product.description && `${product.description.substring(0,100)} ...`}</p>
                     <button onClick={()=> router.push(`/products/${product.id}`)}>View more</button>
                     <div className={styles.image} onClick={()=> router.push(`/products/${product.id}`)}>
                         <img src={product.image} alt="" />

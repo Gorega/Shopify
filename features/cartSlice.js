@@ -19,6 +19,15 @@ export const removeFromCart = createAsyncThunk(
   }
 )
 
+export const clearCart = createAsyncThunk(
+  "cart/clearCart",
+  async () =>{
+    return await axios.delete(`/api/cart/delete/clear`)
+    .then(res => console.log(res))
+    .catch(err=> console.log(err))
+  }
+)
+
 export const cartSlice = createSlice({
   name: 'cart',
   initialState:{
@@ -41,6 +50,15 @@ export const cartSlice = createSlice({
         state.status = "done"
       },
       [removeFromCart.rejected]:(state)=>{
+        state.status = "failed"
+      },
+      [clearCart.pending]:(state)=>{
+        state.status = "loading"
+      },
+      [clearCart.fulfilled]:(state)=>{
+        state.status = "done"
+      },
+      [clearCart.rejected]:(state)=>{
         state.status = "failed"
       }
   },

@@ -100,6 +100,7 @@ return <div className={styles.item}>
     <div className={styles.remove}>
         <FontAwesomeIcon icon={faTrashCan} onClick={()=> setShowModel(true)} />
         <AlertModel showModel={showModel}
+                    alertTitle="Are you sure about this?"
                     removeAction={()=> {
                     dispatch(removeFromCart(product.product_name))
                     setShowModel(false)
