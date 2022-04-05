@@ -19,7 +19,8 @@
     height:fit-content;
     min-height:80%;
     padding:50px 50px;
-    margin:auto
+    margin:auto;
+    overflow: auto;
 }
 
 .checkout .layout svg{
@@ -130,12 +131,13 @@
     font-size:17px;
     font-weight:500;
     cursor: default;
+    display: none;
 }
 
 
-@media(max-width:992px){
+@media(max-width:1450px){
     .checkout .layout{
-        width:80%;
+        width:40rem;
         height:80%;
         padding:50px 25px;
     }
