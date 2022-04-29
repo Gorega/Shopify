@@ -14,7 +14,8 @@ const AppProvider = ({children})=>{
     const [showLog,setShowLog] = useState(false);
     const [subtotalLoading,setSubtotalLoading] = useState(false);
     const [selectedProducts,setSelectedProducts] = useState([]);
-
+    const [productsSpinner,setProductsSpinner] = useState(false);
+    const [filteredProducts,setFilteredProducts] = useState([]);
 
         const getSavedProducts = ()=>{
             if(status === "authenticated"){
@@ -42,7 +43,9 @@ const AppProvider = ({children})=>{
         isProductSaved,
         savedProducts,setSavedProducts,
         subtotalLoading,setSubtotalLoading,
-        selectedProducts,setSelectedProducts
+        selectedProducts,setSelectedProducts,
+        productsSpinner,setProductsSpinner,
+        filteredProducts,setFilteredProducts
     }}>
         {children}
     </AppContext.Provider>

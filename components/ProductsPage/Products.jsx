@@ -1,10 +1,35 @@
 import styles from "../../styles/ProductsPage/products.module.css";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSpinner } from "@fortawesome/free-solid-svg-icons";
+import { AppContext } from "../../ContextApi";
 
-function Products({products,filters}){
+function Products({products}){
     const router = useRouter();
+    const {productsSpinner,filteredProducts,setFilteredProducts} = useContext(AppContext);
     const [showLists,setShowLists] = useState(false);
+    const [sortValue,setSortValue] = useState(null)
+
+    const sortHandler = (e)=>{
+        setSortValue(e.target.value)
+        if(e.target.value === "lowest"){
+          const sortedProducts = filteredProducts.sort((a, b) => a.price - b.price)
+          setFilteredProducts(sortedProducts)
+        }
+        if(e.target.value === "heighest"){
+          const sortedProducts = filteredProducts.sort((a, b) => b.price - a.price)
+          setFilteredProducts(sortedProducts)
+        }
+        if(e.target.value === "a-z"){
+          const sortedProducts = filteredProducts.sort((a, b) => a.name.localeCompare(b.name))
+          setFilteredProducts(sortedProducts)
+        }
+        if(e.target.value === "z-a"){
+          const sortedProducts = filteredProducts.sort((a, b) => b.name.localeCompare(a.name))
+          setFilteredProducts(sortedProducts)
+        }
+      }
 
 return <div className={styles.products}>
     <div className={styles.head}>
@@ -22,7 +47,7 @@ return <div className={styles.products}>
 
         <div className={styles.sec}>
             <span className={styles.sortLabel}>Sort By</span>
-            <select onChange={filters.sortHandler}>
+            <select onChange={sortHandler}>
                 <option value="" hidden>Choose</option>
                 <option value="lowest">Price (Lowest)</option>
                 <option value="heighest">Price (Heighest)</option>
@@ -34,7 +59,9 @@ return <div className={styles.products}>
 
     <div className={styles.body}>
         <div className={showLists ? styles.blocks : styles.lists}>
-            {products.map((product,index)=>{
+            {productsSpinner ? <div className={styles.productsSpinner}><FontAwesomeIcon icon={faSpinner} className="fa-spin" /></div>
+            :
+            products.length <= 0 ? "No products found ..." : products.map((product,index)=>{
                 return  <div className={styles.list} key={index}>
                 <img src={product.image} alt="" onClick={()=> router.push(`/products/${product.id}`)} />
                 <div className={styles.info}>
@@ -44,7 +71,8 @@ return <div className={styles.products}>
                     {showLists && <button onClick={()=> router.push(`/products/${product.id}`)}>Details</button>}
                 </div>
                 </div>
-            })}
+            })
+        }
         </div>
     </div>
 

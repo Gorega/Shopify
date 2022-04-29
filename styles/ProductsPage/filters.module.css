@@ -56,11 +56,19 @@
 }
 
 .filters .filter .colorsList ul li:first-of-type{
-    background-color: transparent;
-    width:auto;
-    height:auto;
-    border-radius: none;
-    text-transform: capitalize;
+    border:1px solid #d9d9d9;
+    position: relative;
+}
+
+.filters .filter .colorsList ul li:first-of-type::after{
+    position: absolute;
+    content:"";
+    top:0;
+    left:50%;
+    transform: translateX(-50%);
+    width:1px;
+    height:100%;
+    background-color: #d9d9d9;
 }
 
 .filters .filter .colorsList ul li{

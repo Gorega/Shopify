@@ -65,6 +65,10 @@
     width: 100%;
 }
 
+.products .productsSpinner{
+    font-size:25px;
+}
+
 .products .body .lists{
     display: grid;
     grid-template-columns: repeat(3,32.33333%);
@@ -100,6 +104,7 @@
 .products .body .lists .list .info span{
     font-size:14px;
     font-weight:400;
+    cursor: default;
 }
 
 .products .body .blocks{
@@ -123,12 +128,14 @@
 
 .products .body .blocks .list .info{
     margin-left:30px;
+    cursor: default;
 }
 
 .products .body .blocks .list .info h2{
     text-transform: capitalize;
     font-size:20px;
     margin-bottom:7px;
+    cursor: pointer;
 }
 
 .products .body .blocks .list .info p{

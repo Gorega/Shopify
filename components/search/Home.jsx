@@ -15,10 +15,10 @@ function Home(){
     const searchHandler = (e)=>{
         setLoading(true)
         e.preventDefault();
-        axios.get(`/api/search/products?query=${searchValue}`,{withCredentials:true})
+        axios.get(`/api/products?name=${searchValue}`,{withCredentials:true})
         .then(res => {
             setLoading(false)
-            setData(res.data.Products)
+            setData(res.data)
         })
         .catch(err => {
             setLoading(false)
@@ -51,7 +51,7 @@ return <div className={styles.searchPage}>
                     <span>${product.price}</span>
                 </div>
                 </div>
-            }) : "No products found"}
+            }) : "No products found ..."}
         </div>
    </div>
 </div>
