@@ -24,7 +24,7 @@ export default async function handler(req,res){
             queryObject.shipping = {$exists:shipping}
         }
         const client = await connectToDataBase();
-        const products = await client.db().collection("products").find(queryObject).toArray();
+        const products = await client.db().collection("products").find(queryObject).sort({price:1}).toArray();
         return res.status(200).json(products);
     }
 }

@@ -124,6 +124,7 @@
 
     .main .sec .subscribe{
         position: relative;
+        width: fit-content;
         top:10px;
         left:0;
     }
