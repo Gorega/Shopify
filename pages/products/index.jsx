@@ -3,6 +3,7 @@ import axios from "axios"
 import { useContext, useEffect } from "react";
 import Head from "next/head"
 import { AppContext } from "../../ContextApi";
+import {server} from "../../lib/config";
 
 function Index({products}){
   const {filteredProducts,setFilteredProducts} = useContext(AppContext)
@@ -29,7 +30,7 @@ return <>
 }
 
 export async function getServerSideProps(){
-    const response = await axios.get(`/api/products`);
+    const response = await axios.get(`${server}/api/products`,{withCredentials:true});
     const data = await response.data;
     return{
       props:{

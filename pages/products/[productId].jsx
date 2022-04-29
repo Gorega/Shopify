@@ -13,15 +13,9 @@ return <>
 }
 
 export async function getServerSideProps(context){
-    let data;
-    try{
-        const {productId} = context.query;
-        const response = await axios.get(`https://course-api.com/react-store-single-product?id=${productId}`)
-        data = await response.data;
-    }catch(err){
-        return <div>Error</div>
-    }
-
+    const {productId} = context.query;
+    const response = await axios.get(`https://course-api.com/react-store-single-product?id=${productId}`);
+    const data = await response.data;
     return{
         props:{
             product:data

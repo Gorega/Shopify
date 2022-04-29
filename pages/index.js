@@ -3,6 +3,7 @@ import Section from "../components/homePage/Section";
 import Body from "../components/homePage/Body";
 import axios from "axios"
 import Head from "next/head";
+import {server} from "../lib/config";
 
 export default function Home({data}) {
 
@@ -18,7 +19,7 @@ export default function Home({data}) {
 }
 
 export async function getServerSideProps(){
-  const response = await axios.get(`https://course-api.com/react-store-products`);
+  const response = await axios.get(`${server}/api/products`,{withCredentials:true});
   const data = await response.data;
 
   return{
