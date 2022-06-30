@@ -73,12 +73,12 @@
     height:100%;
     cursor: pointer;
     border-radius: 5px;
-
+    object-fit: cover;
 }
 
 .main .sec .subscribe{
     position: relative;
-    width:50vh;
+    width:60vh;
     top:-30px;
     right:-40px;
 }

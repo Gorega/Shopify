@@ -59,6 +59,7 @@
 .searchPage .content .sec img{
     min-width:25vh;
     height:25vh;
+    object-fit: cover;
 }
 
 .searchPage .content .sec .info{

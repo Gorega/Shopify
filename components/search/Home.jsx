@@ -49,7 +49,7 @@ return <div className={styles.searchPage}>
                 <div className={styles.info}>
                     <h3>{product.name}</h3>
                     <p>{product.description && `${product.description.substring(0,300)} ....`}</p>
-                    <span>${product.price}</span>
+                    <span>${product.price?.toLocaleString()}</span>
                 </div>
                 </div>
             }) : "No products found ..."}
