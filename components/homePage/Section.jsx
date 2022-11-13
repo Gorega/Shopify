@@ -15,7 +15,7 @@ return <>
         </div>
 
         <div className={styles.more}>
-         <button onClick={()=> router.push("/products")}>SHOP NOW</button>
+            <button onClick={()=> router.push("/products")}>SHOP NOW</button>
         </div>
     </div>
 </div>

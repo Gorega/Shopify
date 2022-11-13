@@ -9,11 +9,15 @@ import { AppContext } from "../../ContextApi"
 import {useSession} from "next-auth/react";
 import NavMenu from "./NavMenu";
 import UserList from "./UserList";
+import { useSelector,useDispatch } from "react-redux";
+import { setShowLoginModal } from "../../features/displayStatesSlice";
 
 function Nav(){
+    const dispatch = useDispatch();
     const router = useRouter();
     const navRef = useRef();
-    const {showLog,setShowLog,savedProducts} = useContext(AppContext);
+    const showLoginModal = useSelector((state)=> state.display.showLoginModal);
+    const {savedProducts} = useContext(AppContext);
     const [showUserList,setShowUserList] = useState(false);
     const [currentIndex,setCurrentIndex] = useState(0);
     const [showNavMenu,setShowNavMenu] = useState(false);
@@ -86,7 +90,7 @@ return <>
                         <UserList />
                     </div>
                 </div>
-                </li> : <li onClick={()=> setShowLog(true)}><FontAwesomeIcon icon={faUser} /></li>}
+                </li> : <li onClick={()=> dispatch(setShowLoginModal(true))}><FontAwesomeIcon icon={faUser} /></li>}
              </ul>
             <div className={styles.bar} onClick={()=> setShowNavMenu(true)}>
                 <FontAwesomeIcon icon={faBars} />
@@ -96,11 +100,11 @@ return <>
     </div>
 </div>
 
-{showLog && <LogPage />}
+{showLoginModal && <LogPage />}
 <NavMenu showNavMenu={showNavMenu}
         closeNavMenu={()=>setShowNavMenu(false)}
-        showLog={()=> {
-            setShowLog(true)
+        showLoginModal={()=> {
+            setShowLoginModal(true)
             setShowNavMenu(false)
         }}
 />

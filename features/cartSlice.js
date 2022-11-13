@@ -5,8 +5,6 @@ export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async (payload) =>{
     return await axios.post(`/api/cart/add`,payload)
-    .then(res => console.log(res))
-    .catch(err=> console.log(err))
   }
 )
 
@@ -14,8 +12,6 @@ export const removeFromCart = createAsyncThunk(
   "cart/removeFromCart",
   async (payload) =>{
     return await axios.delete(`/api/cart/delete/${payload}`)
-    .then(res => console.log(res))
-    .catch(err=> console.log(err))
   }
 )
 
@@ -23,8 +19,6 @@ export const clearCart = createAsyncThunk(
   "cart/clearCart",
   async () =>{
     return await axios.delete(`/api/cart/delete/clear`)
-    .then(res => console.log(res))
-    .catch(err=> console.log(err))
   }
 )
 
@@ -32,6 +26,19 @@ export const cartSlice = createSlice({
   name: 'cart',
   initialState:{
     status:null,
+    showTotalAmountSpinner:false,
+    selectedProducts:[],
+  },
+  reducers:{
+    setShowTotalAmountSpinner:(state,action)=>{
+      state.showTotalAmountSpinner = action.payload
+    },
+    setSelectedProducts:(state,action)=>{
+      state.selectedProducts = [...state.selectedProducts,action.payload]
+    },
+    removeFromSelectedProducts:(state,action)=>{
+      state.selectedProducts = state.selectedProducts.filter((product)=> product.product_name !== action.payload)
+    }
   },
   extraReducers: {
       [addToCart.pending]:(state)=>{
@@ -63,5 +70,8 @@ export const cartSlice = createSlice({
       }
   },
 })
+
+// Action creators are generated for each case reducer function
+export const { setShowTotalAmountSpinner,setSelectedProducts,removeFromSelectedProducts } = cartSlice.actions
 
 export default cartSlice.reducer

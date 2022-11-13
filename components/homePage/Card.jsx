@@ -3,6 +3,7 @@ import styles from "../../styles/homePage/card.module.css";
 
 function Card({product,aos}){
     const router = useRouter();
+    
 return <div className={styles.card} data-aos={aos}>
     <div className={styles.image} onClick={()=> router.push(`/products/${product.id}`)}>
         <img src={product.image} />

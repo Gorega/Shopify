@@ -1,18 +1,16 @@
 import styles from "../../styles/homePage/header.module.css";
-import { useContext } from "react";
-import { AppContext } from "../../ContextApi";
-import MainHead from "./MainHead";
 import { useRouter } from "next/router";
+import Slider from "./Slider";
+import { useSelector } from "react-redux";
 
 function Header({products}){
-    const {sliderValue} = useContext(AppContext);
-    const router =useRouter();
+    const sliderValue = useSelector((state)=> state.slider.sliderValue);
+    const router = useRouter();
 
 return <>
 <div className="container">
     <div className={styles.header}>
-        
-        <MainHead backgroundColor={"#D2E9E3"}
+        <Slider backgroundColor={"#D2E9E3"}
                 control={true}
                 image={true}
                 button={true}
@@ -33,7 +31,6 @@ return <>
            })}
 
         </div>
-
     </div>
 </div>
 </>

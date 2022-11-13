@@ -1,12 +1,13 @@
 import Layout from "./Layout";
-import { useContext } from "react";
-import {AppContext} from "../../ContextApi";
+import { useSelector,useDispatch } from "react-redux";
+import { setShowRegisterModal } from "../../features/displayStatesSlice";
 
 function Home(){
-    const {showRegisterForm,setShowRegisterForm} = useContext(AppContext);
+    const dispatch = useDispatch();
+    const showRegisterModal = useSelector((state)=> state.display.showRegisterModal);
     
     const convertFunc = ()=>{
-        setShowRegisterForm(!showRegisterForm)
+        dispatch(setShowRegisterModal(!showRegisterModal));
     }
 
 return <div className="log-page" style={{
@@ -20,9 +21,9 @@ return <div className="log-page" style={{
 }}>
 
     <Layout introData={{
-        title:showRegisterForm ? "Welcome Back" : "Sign Up",
-        msg:showRegisterForm ? "To Keep connected with up please login with your personal info" : "Don't own an account sign in now to continue with us",
-        button:showRegisterForm ? "Log In" : "Sign Up",
+        title:showRegisterModal ? "Welcome Back" : "Sign Up",
+        msg:showRegisterModal ? "To Keep connected with up please login with your personal info" : "Don't own an account sign in now to continue with us",
+        button:showRegisterModal ? "Log In" : "Sign Up",
         convertFunc:convertFunc
     }} />
 </div>

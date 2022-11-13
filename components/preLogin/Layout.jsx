@@ -1,17 +1,18 @@
 import styles from "../../styles/preLogin/layout.module.css";
 import Register from "./Register";
 import Login from "./Login"
-import { useContext } from "react";
-import { AppContext } from "../../ContextApi";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
+import { useSelector,useDispatch } from "react-redux";
+import { setShowLoginModal } from "../../features/displayStatesSlice";
 
 function Layout({introData}){
 
-    const {showRegisterForm,setShowLog} = useContext(AppContext);
+    const dispatch = useDispatch();
+    const showRegisterModal = useSelector((state)=> state.display.showRegisterModal);
 
 return <div className={styles.layout}>
-    <div className={styles.close} onClick={()=>setShowLog(false)}><FontAwesomeIcon icon={faTimes} /></div>
+    <div className={styles.close} onClick={()=>dispatch(setShowLoginModal(false))}><FontAwesomeIcon icon={faTimes} /></div>
     <div className={styles.intro}>
         <div className={styles.content}>
             <h2>{introData.title}</h2>
@@ -21,7 +22,7 @@ return <div className={styles.layout}>
     </div>
     
     <div className={styles.log}>
-        {showRegisterForm ? <Register /> : <Login />}
+        {showRegisterModal ? <Register /> : <Login />}
     </div>
 
 </div>

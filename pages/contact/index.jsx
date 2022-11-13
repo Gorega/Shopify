@@ -3,10 +3,10 @@ import ContactPage from "../../components/contact/Home";
 
 function index(){
 return <>
-<Head>
-    <title>Contact</title>
-</Head>
-<ContactPage />
+    <Head>
+        <title>Contact</title>
+    </Head>
+    <ContactPage />
 </>
 
 }

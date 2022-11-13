@@ -15,9 +15,9 @@ return <div className={styles.footer}>
                 <div className={styles.contact}>
                     <h2>CONTACT US</h2>
                     <ul>
-                        <li><FontAwesomeIcon icon={faPhone} /> 00970593686817</li>
-                        <li><FontAwesomeIcon icon={faAddressBook} /> waelabuawad18@gmail.com</li>
-                        <li><FontAwesomeIcon icon={faLocation} /> Palestine,Tulkarem</li>
+                        <li><FontAwesomeIcon icon={faPhone} /> +402-926-6561</li>
+                        <li><FontAwesomeIcon icon={faAddressBook} /> test@gmail.com</li>
+                        <li><FontAwesomeIcon icon={faLocation} /> Location,City</li>
                     </ul>
                 </div>
 

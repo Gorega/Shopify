@@ -7,10 +7,10 @@ function Index(){
     const {savedProducts} = useContext(AppContext);
 
 return <>
-<Head>
-    <title>Your Shopping Cart</title>
-</Head>
-<CartPage products={savedProducts} />
+    <Head>
+        <title>Your Shopping Cart</title>
+    </Head>
+    <CartPage products={savedProducts} />
 </>
     
 }

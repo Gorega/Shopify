@@ -1,23 +1,22 @@
 import styles from "../../styles/cartPage/item.module.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
-import {useContext, useEffect, useState} from "react";
-import {AppContext} from "../../ContextApi";
-import AlertModel from "./AlertModel";
-import {removeFromCart} from "../../features/cartSlice";
+import {useEffect, useState} from "react";
+import AlertModal from "./AlertModal";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import {removeFromCart, removeFromSelectedProducts,setShowTotalAmountSpinner,setSelectedProducts} from "../../features/cartSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 function Item({product}){
     const dispatch = useDispatch();
+    const selectedProducts = useSelector((state)=> state.cart.selectedProducts);
     const [counterValue,setCounterValue] = useState(product.product_quantity);
-    const {setSubtotalLoading,selectedProducts,setSelectedProducts} = useContext(AppContext);
-    const [showModel,setShowModel] = useState(false);
+    const [showModal,setShowModal] = useState(false);
 
     // update selected product quantity
     const updateSelectedProductQuantity = (result)=>{
         if(selectedProducts.length >= 1){
-            const selectedProductQuantity = selectedProducts.find((item)=> item.product_name === product.product_name);
+            const selectedProductQuantity = selectedProducts?.filter((item)=> item.product_name === product.product_name);
             return selectedProductQuantity.product_quantity = result;
         }
     }
@@ -45,32 +44,26 @@ function Item({product}){
     }
 
     useEffect(()=>{
-        const check = selectedProducts.find((item)=> item.product_name === product.product_name);
+        const check = selectedProducts?.find((item)=> item.product_name === product.product_name);
         if(check){
-            setSubtotalLoading(true)
+            dispatch(setShowTotalAmountSpinner(true))
         }
         axios.patch(`/api/cart/update/quantity`,{quantity:counterValue,productName:product.product_name})
-        .then(res=> setSubtotalLoading(false))
-        .catch(err=> setSubtotalLoading(false));
+        .then(res=> dispatch(setShowTotalAmountSpinner(false)))
     },[selectedProducts,counterValue])
-
 
 return <div className={styles.item}>
     <div className={styles.content}>
         <div className={styles.select}>
             <input type="checkbox" onChange={(e)=>{
                 if(e.target.checked){
-                    setSelectedProducts((products)=>{
-                        return products.concat({
+                    dispatch(setSelectedProducts({
                             product_name:product.product_name,
                             product_price:product.product_price,
                             product_quantity:counterValue
-                        })
-                    })
+                    }))
                 }else{
-                    setSelectedProducts((products)=>{
-                        return products.filter((item)=> item.product_name !== product.product_name)
-                    })
+                    dispatch(removeFromSelectedProducts(product.product_name))
                 }
             }} />
         </div>
@@ -98,14 +91,13 @@ return <div className={styles.item}>
     </div>
 
     <div className={styles.remove}>
-        <FontAwesomeIcon icon={faTrashCan} onClick={()=> setShowModel(true)} />
-        <AlertModel showModel={showModel}
+        <FontAwesomeIcon icon={faTrashCan} onClick={()=> setShowModal(true)} />
+        <AlertModal showModal={showModal}
                     alertTitle="Are you sure about this?"
                     removeAction={()=> {
-                    dispatch(removeFromCart(product.product_name))
-                    setShowModel(false)
+                    dispatch(removeFromCart(product.product_name)).then(_=>setShowModal(false))
                     }}
-                    closeModel={()=>setShowModel(false)}
+                    closeModal={()=>setShowModal(false)}
                     alertContent="This action will remove this item from your shopping cart."
         />
     </div>

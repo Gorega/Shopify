@@ -4,10 +4,10 @@ import Head from "next/head"
 
 function Product({product}){
 return <>
-<Head>
-    <title>{product.name}</title>
-</Head>
-<ProductPage product={{...product}} />
+    <Head>
+        <title>{product.name}</title>
+    </Head>
+    <ProductPage product={{...product}} />
 </>
 
 }

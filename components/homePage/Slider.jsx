@@ -1,12 +1,13 @@
 import styles from "../../styles/homePage/MainHead.module.css";
-import { useContext } from "react";
-import { AppContext } from "../../ContextApi";
 import { useRouter } from "next/router";
+import { useDispatch, useSelector } from "react-redux";
+import {setSliderValue} from "../../features/sliderSlice";
 
-function MainHead({backgroundColor,control,image,button,text,subsucibe,product}){
-    const {sliderValue,setSliderValue} = useContext(AppContext);
+function Slider({backgroundColor,control,image,button,text,subsucibe,product}){
+    const sliderValue = useSelector((state)=> state.slider.sliderValue);
+    const dispatch = useDispatch();
     const router = useRouter();
-    let slides = ["","","",""];
+    let slides = Array(4).fill("");
 
 return <div className={styles.main} style={{backgroundColor}} data-aos="zoom-in">
     <div className={styles.sec}>
@@ -16,7 +17,7 @@ return <div className={styles.main} style={{backgroundColor}} data-aos="zoom-in"
         {control && <div className={styles.control}>
             <ul>
                 {slides.map((_,index)=>{
-                    return <li key={index} onClick={()=> setSliderValue(index)} className={index === sliderValue && styles.active}></li>
+                    return <li key={index} onClick={()=> dispatch(setSliderValue(index))} className={index === sliderValue && styles.active}></li>
                 })}
             </ul>
         </div>}
@@ -35,4 +36,4 @@ return <div className={styles.main} style={{backgroundColor}} data-aos="zoom-in"
 
 }
 
-export default MainHead;
+export default Slider;

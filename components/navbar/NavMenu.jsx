@@ -7,7 +7,7 @@ import Router from "next/router"
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-function NavMenu({showNavMenu,closeNavMenu,showLog}){
+function NavMenu({showNavMenu,closeNavMenu,showLoginModal}){
     const {data:session,status} = useSession();
     const [showUserList,setShowUserList] = useState(false);
     const router = useRouter();
@@ -24,7 +24,7 @@ return <div className={`${styles.navMenu} ${showNavMenu && styles.show}`}>
             </div>
             {showUserList && <UserList />}
         </div> : <div className={styles.userProfile}>
-            <div className={styles.sign} onClick={showLog}>
+            <div className={styles.sign} onClick={showLoginModal}>
                 <div className={styles.img}><FontAwesomeIcon icon={faUser} /></div>
                 <h2>Login</h2>    
             </div>        

@@ -4,13 +4,13 @@ import styles from "../../styles/cartPage/items.module.css";
 import { useRouter } from "next/router";
 import {useDispatch} from "react-redux";
 import {clearCart} from "../../features/cartSlice";
-import AlertModel from "./AlertModel";
+import AlertModal from "./AlertModal";
 import { useState } from "react";
 
 function Items({products}){
-    const router = useRouter();
-    const [showModel,setShowModel] = useState(false);
     const dispatch = useDispatch();
+    const router = useRouter();
+    const [showModal,setShowModal] = useState(false);
     
 return <div className={styles.items}>
     <div className={styles.head}>
@@ -24,20 +24,20 @@ return <div className={styles.items}>
     </div>
 
     <div className={styles.in}>
-        {products.map((product,index)=>{
-            return <Item product={{...product}} key={index} />
+        {products?.map((product,index)=>{
+            return <Item key={index} product={{...product}} products={products} />
         })}
     </div>
 
     <div className={styles.control}>
         <button onClick={()=> router.push("/products")}>Continue Shopping</button>
-        <button onClick={()=> setShowModel(true)} style={{backgroundColor:"var(--alt-background)"}}>Clear Shopping Cart</button>
-        <AlertModel showModel={showModel}
+        <button onClick={()=> setShowModal(true)} style={{backgroundColor:"var(--alt-background)"}}>Clear Shopping Cart</button>
+        <AlertModal showModal={showModal}
                     removeAction={()=>{
                         dispatch(clearCart());
-                        setShowModel(false)
+                        setShowModal(false)
                     }}
-                    closeModel={()=> setShowModel(false)}
+                    closeModal={()=> setShowModal(false)}
                     alertContent="This action will remove all items from your shopping cart."
         />
     </div>

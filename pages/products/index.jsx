@@ -1,30 +1,32 @@
 import ProductsPage from "../../components/ProductsPage/Home";
 import axios from "axios"
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import Head from "next/head"
-import { AppContext } from "../../ContextApi";
 import {server} from "../../lib/config";
+import { useDispatch,useSelector } from "react-redux";
+import {setFilteredProducts} from "../../features/filterSlice";
 
 function Index({products}){
-  const {filteredProducts,setFilteredProducts} = useContext(AppContext)
+  const dispatch = useDispatch();
+  const {filteredProducts} = useSelector((state)=> state.filter);
   const companies = ["All",... new Set(products.map((product)=> product.company))]
   const categories = ["All",... new Set(products.map((product)=> product.category))]
   const colors = ["white",...new Set(products.map((product)=> product.colors[0]))]
 
   useEffect(()=>{
-    setFilteredProducts(products)
+    dispatch(setFilteredProducts(products));
   },[])
 
 return <>
-  <Head>
-    <title>Products</title>
-  </Head>
-  <ProductsPage 
-        products={filteredProducts}
-        categories={categories}
-        companies={companies}
-        colors={colors}
-        />
+    <Head>
+      <title>Products</title>
+    </Head>
+    <ProductsPage 
+          products={filteredProducts}
+          categories={categories}
+          companies={companies}
+          colors={colors}
+      />
 
 </>
 }

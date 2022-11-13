@@ -1,14 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { useContext } from "react";
-import { AppContext } from "../../ContextApi";
 import styles from "../../styles/cartPage/checkout.module.css";
+import { useSelector } from "react-redux";
 
 function Checkout({subtotal,closeCheckoutpage}){
-    const {subtotalLoading} = useContext(AppContext)
+    const showTotalAmountSpinner = useSelector((state)=> state.cart.showTotalAmountSpinner);
 
 return <div className={styles.checkout}>
-        {subtotalLoading ?  <div className={styles.layout}> <FontAwesomeIcon className="fa-spin" icon={faSpinner} /></div> : <div className={styles.layout}>
+        {showTotalAmountSpinner ?  <div className={styles.layout}> <FontAwesomeIcon className="fa-spin" icon={faSpinner} /></div> : <div className={styles.layout}>
             <h2>Checkout</h2>
             <form  autoComplete="nope">
                 <div className={styles.formControl}>

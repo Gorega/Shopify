@@ -4,11 +4,11 @@ import Head from "next/head";
 
 function index(){
 return <>
-<Head>
-    <title>Search</title>
-</Head>
-<Patch prev="Home" current="Search" route="/" />
-<SearchPage />
+    <Head>
+        <title>Search</title>
+    </Head>
+    <Patch prev="Home" current="Search" route="/" />
+    <SearchPage />
 </>
 }
 

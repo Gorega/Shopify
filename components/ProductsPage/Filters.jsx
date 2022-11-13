@@ -1,10 +1,12 @@
-import { useRef, useState,useLayoutEffect, useContext } from "react";
+import { useRef, useState,useLayoutEffect } from "react";
 import styles from "../../styles/ProductsPage/filters.module.css";
 import axios from "axios";
-import { AppContext } from "../../ContextApi";
+import { useDispatch } from "react-redux";
+import { setShowSpinnerPlaceholder } from "../../features/displayStatesSlice";
+import {setFilteredProducts} from "../../features/filterSlice";
 
 function Filters({categories,companies,colors}){
-    const {setProductsSpinner,setFilteredProducts} = useContext(AppContext);
+    const dispatch = useDispatch();
     const checkBox = useRef();
     const firstRender = useRef(true)
     const [categryIndex,setCategoryIndex] = useState(0);
@@ -22,17 +24,16 @@ function Filters({categories,companies,colors}){
           return;
         }
         const controller = new AbortController();
-        setProductsSpinner(true)
-        axios.get(`/api/products?name=${searchValue}&category=${categoryValue}&company=${companyValue}&price=${priceValue}&colors=${colorValue}&${freeShipping && `shipping=${freeShipping}`}`,{
-          signal: controller.signal
+          dispatch(setShowSpinnerPlaceholder(true))
+          axios.get(`/api/products?name=${searchValue}&category=${categoryValue}&company=${companyValue}&price=${priceValue}&colors=${colorValue}&${freeShipping && `shipping=${freeShipping}`}`,{
+            signal: controller.signal
         })
         .then(res => {
-            setProductsSpinner(false)
-            setFilteredProducts(res.data)
+            dispatch(setShowSpinnerPlaceholder(false))
+            dispatch(setFilteredProducts(res.data))
         })
         .catch(err => {
           if(controller.signal) return;
-          console.log(err)
         })
         return()=>{
           controller.abort();

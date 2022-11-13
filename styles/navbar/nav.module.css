@@ -26,6 +26,11 @@
     cursor: pointer;
 }
 
+.nav ul{
+    padding:0;
+    margin:0;
+}
+
 .nav .content .list ul,.nav .content .end ul{
     display: inline-flex;
     align-items: center;

@@ -1,13 +1,16 @@
 import styles from "../../styles/ProductsPage/products.module.css";
 import { useRouter } from "next/router";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
-import { AppContext } from "../../ContextApi";
+import { useSelector,useDispatch } from "react-redux";
+import {setFilteredProducts} from "../../features/filterSlice";
 
 function Products({products}){
+    const dispatch = useDispatch();
     const router = useRouter();
-    const {productsSpinner,filteredProducts,setFilteredProducts} = useContext(AppContext);
+    const {showSpinnerPlaceholder} = useSelector((state)=> state.display);
+    const {filteredProducts} = useSelector((state)=>state.filter);
     const [showLists,setShowLists] = useState(false);
     const [sortValue,setSortValue] = useState(null)
 
@@ -15,19 +18,19 @@ function Products({products}){
         setSortValue(e.target.value)
         if(e.target.value === "lowest"){
           const sortedProducts = filteredProducts.sort((a, b) => a.price - b.price)
-          setFilteredProducts(sortedProducts)
+          dispatch(setFilteredProducts(sortedProducts))
         }
         if(e.target.value === "heighest"){
           const sortedProducts = filteredProducts.sort((a, b) => b.price - a.price)
-          setFilteredProducts(sortedProducts)
+          dispatch(setFilteredProducts(sortedProducts))
         }
         if(e.target.value === "a-z"){
           const sortedProducts = filteredProducts.sort((a, b) => a.name.localeCompare(b.name))
-          setFilteredProducts(sortedProducts)
+          dispatch(setFilteredProducts(sortedProducts))
         }
         if(e.target.value === "z-a"){
           const sortedProducts = filteredProducts.sort((a, b) => b.name.localeCompare(a.name))
-          setFilteredProducts(sortedProducts)
+          dispatch(setFilteredProducts(sortedProducts))
         }
       }
 
@@ -39,7 +42,7 @@ return <div className={styles.products}>
         </div>
 
         <div className={styles.sec}>
-            {products.length} Products Found
+            {products?.length} Products Found
         </div>
 
         <div className={styles.line}>
@@ -59,9 +62,9 @@ return <div className={styles.products}>
 
     <div className={styles.body}>
         <div className={showLists ? styles.blocks : styles.lists}>
-            {productsSpinner ? <div className={styles.productsSpinner}><FontAwesomeIcon icon={faSpinner} className="fa-spin" /></div>
+            {showSpinnerPlaceholder ? <div className={styles.productsSpinner}><FontAwesomeIcon icon={faSpinner} className="fa-spin" /></div>
             :
-            products.length <= 0 ? "No products found ..." : products.map((product,index)=>{
+            products?.length <= 0 ? "No products found ..." : products?.map((product,index)=>{
                 return  <div className={styles.list} key={index}>
                 <img src={product.image} alt="" onClick={()=> router.push(`/products/${product.id}`)} />
                 <div className={styles.info}>

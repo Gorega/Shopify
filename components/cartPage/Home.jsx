@@ -1,5 +1,5 @@
 import styles from "../../styles/cartPage/home.module.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AppContext } from "../../ContextApi";
 import Patch from "../Patch";
 import Items from "./Items";

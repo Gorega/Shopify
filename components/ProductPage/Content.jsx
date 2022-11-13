@@ -7,14 +7,15 @@ import styles from "../../styles/ProductPage/content.module.css";
 import Rating from '@mui/material/Rating';
 import { useDispatch, useSelector } from "react-redux";
 import {addToCart,removeFromCart} from "../../features/cartSlice";
+import {setShowLoginModal} from "../../features/displayStatesSlice";
 
 function Content({product}){
+    const dispatch = useDispatch();
+    const {status} = useSession();
     const [counterValue,setCounterValue] = useState(1);
     const [colorIndex,setColorIndex] = useState(0);
-    const {status} = useSession();
-    const dispatch = useDispatch();
     const {status:cartStatus} = useSelector((state)=> state.cart)
-    const {isProductSaved,setShowLog} = useContext(AppContext);
+    const {isProductSaved} = useContext(AppContext);
 
     const saveProduct = (productName)=>{
         if(status === "authenticated"){
@@ -30,7 +31,7 @@ function Content({product}){
                 }))
             }
         }else{
-            setShowLog(true)
+            dispatch(setShowLoginModal(true))
         }
     }
     

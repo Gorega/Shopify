@@ -3,16 +3,15 @@ import styles from "../../styles/cartPage/orderCard.module.css";
 import Checkout from "./Checkout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
-import { useContext } from "react";
-import {AppContext} from "../../ContextApi";
-import AlertModel from "./AlertModel";
+import AlertModal from "./AlertModal";
+import { useSelector } from "react-redux";
 
 function OrderCard(){
-    const {subtotalLoading,selectedProducts} = useContext(AppContext);
+    const {showTotalAmountSpinner,selectedProducts} = useSelector((state)=> state.cart);
     const [showCheckoutPage,setShowCheckoutPage] = useState(false);
-    const [showAlertModel,setShowAlertModel] = useState(false);
+    const [showAlertModal,setShowAlertModal] = useState(false);
     let shippingFee = 5.34
-    const subtotal = selectedProducts.reduce((total,product)=>{
+    const subtotal = selectedProducts?.reduce((total,product)=>{
         return total += product.product_price * product.product_quantity
     },0)
 
@@ -30,7 +29,7 @@ return <>
         <div className={styles.head}>
             <div className={styles.sec}>
             <h2>Subtotal :</h2>
-            <span>{subtotalLoading ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : `$${subtotal.toLocaleString()}`}</span>  
+            <span>{showTotalAmountSpinner ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : `$${subtotal.toLocaleString()}`}</span>  
             </div>
             <div className={styles.sec}>
                 <h2>Shipping Fee :</h2>
@@ -40,24 +39,24 @@ return <>
 
         <div className={styles.total}>
             <h2>Order Total :</h2>
-            <span>{subtotalLoading ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : `$${(subtotal + shippingFee).toLocaleString()}`}</span>
+            <span>{showTotalAmountSpinner ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : `$${(subtotal + shippingFee).toLocaleString()}`}</span>
         </div>
     </div>
 
     <button onClick={()=> {
-        if(selectedProducts.length >= 1){
+        if(selectedProducts?.length >= 1){
             setShowCheckoutPage(true)
         }else{
-            setShowAlertModel(true)
+            setShowAlertModal(true)
         }
     }}>Checkout</button>
 </div>
 
     {showCheckoutPage && <Checkout subtotal={(subtotal + shippingFee).toLocaleString()} closeCheckoutpage={()=> setShowCheckoutPage(false)} />}
-    <AlertModel showModel={showAlertModel}
+    <AlertModal showModal={showAlertModal}
                 alertContent="Please select the products you want to buy first."
-                closeModel={()=>setShowAlertModel(false)}
-                removeAction={()=>setShowAlertModel(false)}
+                closeModal={()=>setShowAlertModal(false)}
+                removeAction={()=>setShowAlertModal(false)}
         />
 </>
 

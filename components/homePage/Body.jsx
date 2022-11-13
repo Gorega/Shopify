@@ -1,16 +1,15 @@
+import Slider from "./Slider";
 import { useRouter } from "next/router";
 import styles from "../../styles/homePage/body.module.css";
 import Card from "./Card";
 import Footage from "./Footage";
-import MainHead from "./MainHead";
 
 function Body({products}){
     const router = useRouter();
 
 return <div className="container">
     <div className={styles.body}>
-
-        <MainHead backgroundColor={"#D2E9E3"}
+        <Slider backgroundColor={"#D2E9E3"}
                 control={false}
                 image={true}
                 button={true}
@@ -76,7 +75,7 @@ return <div className="container">
         
 
         <div className="subscribe">
-            <MainHead backgroundColor={"#FFEDCD"}
+            <Slider backgroundColor={"#FFEDCD"}
                     text={true}
                     subsucibe={true}
                     product={{
