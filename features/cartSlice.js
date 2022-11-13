@@ -38,6 +38,9 @@ export const cartSlice = createSlice({
     },
     removeFromSelectedProducts:(state,action)=>{
       state.selectedProducts = state.selectedProducts.filter((product)=> product.product_name !== action.payload)
+    },
+    clearSelectedProducts:(state,action)=>{
+      state.selectedProducts = action.payload;
     }
   },
   extraReducers: {
@@ -72,6 +75,6 @@ export const cartSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setShowTotalAmountSpinner,setSelectedProducts,removeFromSelectedProducts } = cartSlice.actions
+export const { setShowTotalAmountSpinner,setSelectedProducts,removeFromSelectedProducts,clearSelectedProducts } = cartSlice.actions
 
 export default cartSlice.reducer

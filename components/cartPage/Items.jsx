@@ -34,8 +34,7 @@ return <div className={styles.items}>
         <button onClick={()=> setShowModal(true)} style={{backgroundColor:"var(--alt-background)"}}>Clear Shopping Cart</button>
         <AlertModal showModal={showModal}
                     removeAction={()=>{
-                        dispatch(clearCart());
-                        setShowModal(false)
+                        dispatch(clearCart()).then(_=>setShowModal(false));
                     }}
                     closeModal={()=> setShowModal(false)}
                     alertContent="This action will remove all items from your shopping cart."

@@ -4,9 +4,11 @@ import Checkout from "./Checkout";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons'
 import AlertModal from "./AlertModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clearSelectedProducts } from "../../features/cartSlice";
 
 function OrderCard(){
+    const dispatch = useDispatch();
     const {showTotalAmountSpinner,selectedProducts} = useSelector((state)=> state.cart);
     const [showCheckoutPage,setShowCheckoutPage] = useState(false);
     const [showAlertModal,setShowAlertModal] = useState(false);
@@ -22,6 +24,10 @@ function OrderCard(){
             document.body.style.overflow = "auto";
         }
     },[showCheckoutPage])
+
+    useEffect(()=>{
+        dispatch(clearSelectedProducts([]))
+    },[])
 
 return <>
 <div className={styles.card}>

@@ -95,7 +95,10 @@ return <div className={styles.item}>
         <AlertModal showModal={showModal}
                     alertTitle="Are you sure about this?"
                     removeAction={()=> {
-                    dispatch(removeFromCart(product.product_name)).then(_=>setShowModal(false))
+                    dispatch(removeFromCart(product.product_name)).then(_=>{
+                        dispatch(removeFromSelectedProducts(product.product_name))
+                        setShowModal(false)
+                    })
                     }}
                     closeModal={()=>setShowModal(false)}
                     alertContent="This action will remove this item from your shopping cart."
