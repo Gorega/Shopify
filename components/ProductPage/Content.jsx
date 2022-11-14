@@ -101,9 +101,10 @@ return <div className={styles.content}>
     </div>
 
     <div className={styles.add}>
-        <button onClick={()=>saveProduct(product.name)}>
-        {cartStatus === "loading" ? <FontAwesomeIcon className="fa-spin" icon={faSpinner} /> : isProductSaved(product.name) ? "Remove from cart" : "Add to cart"}
+        <button onClick={()=>saveProduct(product.name)} className={cartStatus === "loading" && styles.disabled}>
+            {isProductSaved(product.name) ? "Remove from cart" : "Add to cart"}
         </button>
+        <span>{cartStatus === "loading" && <FontAwesomeIcon className="fa-spin" icon={faSpinner} />}</span>
     </div>
 
 </div>

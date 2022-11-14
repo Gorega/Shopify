@@ -122,7 +122,6 @@
 
 .content .add{
     display: inline-flex;
-    align-items: center;
 }
 
 .content .add button{
@@ -133,6 +132,16 @@
     color:black;
     cursor: pointer;
     font-size:13px;
+}
+
+.content .add button.disabled{
+    pointer-events: none;
+    cursor:no-drop;
+}
+
+.content .add span{
+    margin-left:15px;
+    margin-top:15px;
 }
 
 .content .add .msg{

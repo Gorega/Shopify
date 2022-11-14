@@ -10,26 +10,26 @@ function Products({products}){
     const dispatch = useDispatch();
     const router = useRouter();
     const {showSpinnerPlaceholder} = useSelector((state)=> state.display);
-    const {filteredProducts} = useSelector((state)=>state.filter);
+    const {filteredProducts} = useSelector((state)=> state.filter);
     const [showLists,setShowLists] = useState(false);
     const [sortValue,setSortValue] = useState(null)
 
     const sortHandler = (e)=>{
         setSortValue(e.target.value)
         if(e.target.value === "lowest"){
-          const sortedProducts = filteredProducts.sort((a, b) => a.price - b.price)
+          const sortedProducts = [...filteredProducts].sort((a, b) => a.price - b.price)
           dispatch(setFilteredProducts(sortedProducts))
         }
         if(e.target.value === "heighest"){
-          const sortedProducts = filteredProducts.sort((a, b) => b.price - a.price)
+          const sortedProducts = [...filteredProducts].sort((a, b) => b.price - a.price)
           dispatch(setFilteredProducts(sortedProducts))
         }
         if(e.target.value === "a-z"){
-          const sortedProducts = filteredProducts.sort((a, b) => a.name.localeCompare(b.name))
+          const sortedProducts = [...filteredProducts].sort((a, b) => a.name.localeCompare(b.name))
           dispatch(setFilteredProducts(sortedProducts))
         }
         if(e.target.value === "z-a"){
-          const sortedProducts = filteredProducts.sort((a, b) => b.name.localeCompare(a.name))
+          const sortedProducts = [...filteredProducts].sort((a, b) => b.name.localeCompare(a.name))
           dispatch(setFilteredProducts(sortedProducts))
         }
       }

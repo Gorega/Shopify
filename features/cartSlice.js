@@ -1,6 +1,12 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
+const initialState = {
+  status:null,
+  showTotalAmountSpinner:false,
+  selectedProducts:[],
+}
+
 export const addToCart = createAsyncThunk(
   "cart/addToCart",
   async (payload) =>{
@@ -24,11 +30,7 @@ export const clearCart = createAsyncThunk(
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState:{
-    status:null,
-    showTotalAmountSpinner:false,
-    selectedProducts:[],
-  },
+  initialState,
   reducers:{
     setShowTotalAmountSpinner:(state,action)=>{
       state.showTotalAmountSpinner = action.payload
